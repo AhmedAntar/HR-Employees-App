@@ -1,0 +1,50 @@
+﻿@model Employee
+@{
+    ViewBag.Title = Model != null ? "Edit" : "Create";
+}
+<h3 class="mb-4">@ViewBag.Title Employee</h3>
+
+<form class="p-4 m-2 fw-bold form-control" method="post" asp-action=@ViewBag.Title >
+    <div asp-validation-summary="All" class="text-danger"></div>
+    
+    <div class="form-group">
+        <label asp-for="EmployeeId" class="form-label" hidden></label>
+        <input type="hidden" asp-for="EmployeeId" class="form-control" readonly/>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmployeeNumber" class="form-label"></label>
+        <input asp-for="EmployeeNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EmployeeName" class="form-label"></label>
+        <input asp-for="EmployeeName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="DOB" class="form-label"></label>
+        <input asp-for="DOB" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="HiringDate" class="form-label"></label>
+        <input asp-for="HiringDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="GrossSalary" class="form-label"></label>
+        <input asp-for="GrossSalary" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="NetSalary" class="form-label"></label>
+        <input asp-for="NetSalary" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="DepartmentId" class="form-label"></label>
+        <select asp-for="DepartmentId" asp-items="@(new SelectList(ViewBag.Departments,"DepartmentId", "DepartmentName"))" class="form-select" >
+            <option value="">Selecte Department</option>
+        </select>
+    </div>
+
+    <div class="form-group mt-3">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+
+</form>

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewBag.Title = "Employee";
+}
+
+
+    <div class="row">
+        <h1 class="mb-4">All Employees</h1>
+
+        @using (Html.BeginForm())
+        {
+            <div class="input-group">
+                
+                @Html.TextBox("SearchByName", null, new{ @class ="form-control", @placeholder = "Search by Name ... " })
+                <input type="submit" value="Search" class=" btn btn-secondary" />
+                <a class="mx-3 btn btn-primary" asp-action="Create">Add new</a>
+            </div>
+            <div>
+            
+            </div>
+        
+        }
+        
+        <div class="row">
+            <div class="col-sm-12">
+            <table class="table table-hover mt-5">
+                <thead>
+                    <tr>
+                        <th>
+                            
+                            @Html.ActionLink("Employee Number", "Index", new {sortField = "EmployeeNumber", currentSortField = ViewBag.SortField, sortDirection = ViewBag.SortDirection}, new{@style="text-decoration: none"})
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-arrow-down-up fw-bold" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+                            </svg>
+                        </th>
+                        <th>
+                            @Html.ActionLink("Employee Name", "Index", new {sortField = "EmployeeName", currentSortField = ViewBag.SortField, sortDirection = ViewBag.SortDirection}, new{@style="text-decoration: none"})
+                        
+                        </th>
+                        <th>
+                            @Html.ActionLink("Date of Birth", "Index", new {sortField = "DOB", currentSortField = ViewBag.SortField, sortDirection = ViewBag.SortDirection}, new{@style="text-decoration: none"})
+                        </th>
+                        <th>
+                            @Html.ActionLink("Hiring Date", "Index", new {sortField = "HiringDate", currentSortField = ViewBag.SortField, sortDirection = ViewBag.SortDirection}, new{@style="text-decoration: none"})
+                        </th>
+                        <th>
+                            @Html.ActionLink("Gross Salary", "Index", new {sortField = "GrossSalary", currentSortField = ViewBag.SortField, sortDirection = ViewBag.SortDirection}, new{@style="text-decoration: none"})
+                        </th>
+                        <th>
+                            @Html.ActionLink("Net Salary", "Index", new {sortField = "NetSalary", currentSortField = ViewBag.SortField, sortDirection = ViewBag.SortDirection}, new{@style="text-decoration: none"})
+                        </th>
+                        <th>
+                            @Html.ActionLink("Department Name", "Index", new {sortField = "DepartmentName", currentSortField = ViewBag.SortField, sortDirection = ViewBag.SortDirection}, new{@style="text-decoration: none"})
+                        </th>
+                        <th>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                            </svg>
+                            Options 
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DOB)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HiringDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GrossSalary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NetSalary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartmentName)
+                            </td>
+                            <td class="btn-group">
+                                @Html.ActionLink("Edit","Edit", new{id = item.EmployeeId}, new { @class = "btn btn-success " })
+                                @Html.ActionLink("Delete","Delete", new{id = item.EmployeeId}, new {onClick = "return confirm('Are you sure to delete this Employee?!');", @class = "btn btn-danger"})
+                                .
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+
